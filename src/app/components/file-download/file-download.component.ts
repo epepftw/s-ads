@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { DownloadFileService } from 'src/app/services/downloadFile/download-file.service';
+import { DownloadFileService } from 'src/app/core/services/downloadFile/download-file.service';
 import { environment } from 'src/environments/environment';
 
 @Component({

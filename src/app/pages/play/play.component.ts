@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as io from 'socket.io-client';
+import { io } from "socket.io-client";
+import { MediaFileService } from 'src/app/core/services/mediaFile/media-file.service';
 
 @Component({
   selector: 'app-play',
@@ -9,55 +10,32 @@ import * as io from 'socket.io-client';
 })
 export class PlayComponent implements OnInit {
   socket: any;
+  mediaFiles: any[] = [];
 
-  partition: any = [
-    {
-      background: 'green',
-      height: 1080,
-      width: 500,
-      position: 'absolute',
-      left: 0,
-      top: 0
-    },
-    {
-      background: 'yellow',
-      height: 1080,
-      width: 500,
-      position: 'absolute',
-      left: 500,
-      top: 0
-    },
-    {
-      background: 'red',
-      height: 1080,
-      width: 500,
-      position: 'absolute',
-      left: 1000,
-      top: 0
-    },
-    {
-      background: 'blue',
-      height: 1080,
-      width: 500,
-      position: 'absolute',
-      left: 1500,
-      top: 0
-    }
-  ]
-
-  constructor(private _router: Router) { 
-    this.socket = io('http://localhost:3000')
+  constructor(private _router: Router, private _mediaFiles: MediaFileService) { 
+    this.socket = io('http://localhost:3200')
   }
 
   ngOnInit(): void {
     this.onUpdate();
+    this.getMediaFiles();
   }
 
+  getMediaFiles() {
+    this._mediaFiles.get_mediaFiles().subscribe(
+      (media: any) =>  {
+        this.mediaFiles = media;
+        console.log('#MEDIA FILES', this.mediaFiles)
+      }
+    )
+  }
 
   onUpdate() {
-    this.socket.on('gagoka_resib', (data: any) => {
+    this.socket.on('buttonUpdate', (data: any) => {
       console.log(data);
+      this.getMediaFiles();
       this._router.navigate(['setup']);
     });
   }
+
 }

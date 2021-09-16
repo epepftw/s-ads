@@ -2,10 +2,17 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { endpoints } from "./endpoints";
+
 export const environment = {
   production: false,
-  base_uri: 'http://localhost:3000/api',
-  save_uploaded_file: '/media/saveuploadedmediainfo'
+  base_uri: 'http://localhost:5000/api/',
+  cloud_api: 'https://rcdt-api.herokuapp.com/api',
+  
+  save_uploaded_file: '/media/saveuploadedmediainfo',
+
+  get: endpoints.get,
+  post: endpoints.post
 };
 
 /*

@@ -6,6 +6,8 @@ import { PlayComponent } from './pages/play/play.component';
 import { PartitionComponent } from './components/partition/partition.component';
 import { SetupComponent } from './pages/setup/setup.component';
 import { FileDownloadComponent } from './components/file-download/file-download.component'
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +18,7 @@ import { FileDownloadComponent } from './components/file-download/file-download.
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
