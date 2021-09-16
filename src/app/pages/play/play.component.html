@@ -1,9 +1,5 @@
-<app-partition
-*ngFor="let p of partition"
-[background]="p.background"
-[height]="p.height"
-[width]="p.width"
-[position]="p.position"
-[x_pos]="p.left"
-[y_pos]="p.top"
-></app-partition>
+<div *ngFor="let file of mediaFiles">
+    <div class="player">
+        <img class="mediaFile" [src]="file.url" alt="">
+    </div>
+</div>
