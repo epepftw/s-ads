@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MediaFileService {
+export class AssignKeyService {
 
   constructor(private _http: HttpClient) { }
 
-  get_mediaFiles() {
-    return this._http.get(`${environment.cloud_api}${environment.get.get_mediaFiles}`)
+  assign_key(key: string) : Observable<any> {
+    return this._http.get(`${environment.cloud_api}${environment.get.get_key_data}?key=${key}`)
   }
 }

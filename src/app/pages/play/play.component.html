@@ -3,20 +3,13 @@
 
 
 
-        <div class="col-md-9 player">
-           <mdb-carousel [isControls]="false" [animation]="'slide'">
-            <mdb-carousel-item>
-              <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg" alt="First slide">
-            </mdb-carousel-item>
-            <mdb-carousel-item>
-              <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg" alt="Second slide">
-            </mdb-carousel-item>
-            <mdb-carousel-item>
-              <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Third slide">
+        <div class="col-md-9 p-0 player">
+           <mdb-carousel class="carousel slide carousel-fade" [isControls]="false" [animation]="'fade'">
+            <mdb-carousel-item *ngFor="let file of mediaFiles">
+                 <img class="d-block w-100 mediaFile" [src]="file.file_url" alt="">
             </mdb-carousel-item>
           </mdb-carousel>
 
-            <img class="mediaFile" [src]="mediaFiles[0].url" alt="">
         </div>
 
 

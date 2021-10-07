@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { io } from "socket.io-client";
 import { MediaFileService } from 'src/app/core/services/mediaFile/media-file.service';
-
+////////////////TO MOVE////////////////////////////////
+import { AssignKeyService } from 'src/app/core/services/assignKey/assign-key.service';
 @Component({
   selector: 'app-play',
   templateUrl: './play.component.html',
@@ -12,7 +13,9 @@ export class PlayComponent implements OnInit {
   socket: any;
   mediaFiles: any[] = [];
 
-  constructor(private _router: Router, private _mediaFiles: MediaFileService) { 
+  constructor(private _router: Router,
+              private _mediaFiles: MediaFileService,
+              private _assignKey: AssignKeyService) { 
     this.socket = io('http://localhost:3200')
   }
 
