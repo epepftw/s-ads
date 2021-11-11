@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AssignKeyService } from 'src/app/core/services/assignKey/assign-key.service';
 
 @Component({
@@ -10,11 +11,13 @@ import { AssignKeyService } from 'src/app/core/services/assignKey/assign-key.ser
 export class EnterKeyFormComponent implements OnInit {
   myControl = new FormControl();
   register_key! : FormGroup;
+  assignee : any;
 
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _assignKey: AssignKeyService
+    private _assignKey: AssignKeyService,
+    private _router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +34,7 @@ export class EnterKeyFormComponent implements OnInit {
     this.register_key.valueChanges.subscribe(
       data => {
         console.log('WhaaaT',data)
+      
       }
     )
 	}
@@ -47,7 +51,9 @@ export class EnterKeyFormComponent implements OnInit {
     //subscribe
     this._assignKey.assign_key(payload.key).subscribe(
       (data: any) => {
-        console.log('hallow',data)
+        this.assignee = data;
+        alert('Key Assigned')
+        this._router.navigate(['setup'])
       }
     )
   }

@@ -80,3 +80,23 @@ body{
          transform: translateX(-100%);
      }
  }
+
+ .slider-frame{
+     overflow: hidden;
+     height: 100%;
+     width: 100%;
+ }
+
+ @-webkit-keyframes slide_animation{
+     0% {left:0%}
+     10% {left:0%}
+     20% {left:100%}
+     30% {left:100%}
+     40% {left:200%}
+     50% {left:200%}
+     60% {left:100%}
+     70% {left:100%}
+     80% {left:0%}
+     90% {left:0%}
+     100% {left:0%}
+ }

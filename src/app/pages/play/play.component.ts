@@ -12,6 +12,8 @@ import { AssignKeyService } from 'src/app/core/services/assignKey/assign-key.ser
 export class PlayComponent implements OnInit {
   socket: any;
   mediaFiles: any[] = [];
+  jsonData: any;
+  jsonContents: any[] = [];
 
   constructor(private _router: Router,
               private _mediaFiles: MediaFileService,
@@ -20,7 +22,8 @@ export class PlayComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.onUpdate();
+  //  this.onUpdate();
+    this.getData();
     this.getMediaFiles();
   }
 
@@ -41,4 +44,12 @@ export class PlayComponent implements OnInit {
     });
   }
 
+  getData() {
+    this._mediaFiles.get_json_data_mall().subscribe(
+      (data : any) => {
+        this.jsonData = data.zones;
+        console.log('hlloww',data.zones)
+      }
+    )
+  }
 }

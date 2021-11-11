@@ -1,33 +1,12 @@
-<div class="container-fluid p-0">
-    <div class="row">
-
-
-
-        <div class="col-md-9 p-0 player">
-           <mdb-carousel class="carousel slide carousel-fade" [isControls]="false" [animation]="'fade'">
-            <mdb-carousel-item *ngFor="let file of mediaFiles">
-                 <img class="d-block w-100 mediaFile" [src]="file.file_url" alt="">
-            </mdb-carousel-item>
-          </mdb-carousel>
-
+ <div class="container-fluid p-0">
+    <ng-container *ngFor="let j of jsonData">
+        <div *ngIf="jsonData" class="position-absolute" [ngStyle]="{
+            'background': j.zone_data.background,
+            'height': j.zone_data.height+'px',
+            'width': j.zone_data.width+'px',
+            'left': j.zone_data.position_x+'px',
+            'top': j.zone_data.position_y+'px'}">
+            <img width="100%" height="100%" [src]="j.zone_playlist_data.contents[0].file_url" alt="">
         </div>
-
-
-
-
-        <div class="col-md-3 p-0">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/aZfHj1YORk8?loop=1&rel=0&autoplay=1&playlist=aZfHj1YORk8&mute=1&controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    </div>
-    
-    
-
-    <div class="ticker-wrapper">
-        <div class="bigHeading">Breaking</div>
-        <div class="text-update">
-            <p>
-                Coronavirus lives updates: china reports no death for the first time yesyes sumtingwong wi tu low ho lee fuk bang ding ow. 
-            </p>
-        </div>
-    </div>
+    </ng-container>
 </div>
