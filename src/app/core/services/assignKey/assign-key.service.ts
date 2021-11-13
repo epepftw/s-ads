@@ -11,6 +11,6 @@ export class AssignKeyService {
   constructor(private _http: HttpClient) { }
 
   assign_key(key: string) : Observable<any> {
-    return this._http.get(`${environment.cloud_api}${environment.get.get_key_data}?key=${key}`)
+    return this._http.get(`${environment.base_uri}${environment.get.register_key}?key=${key}`)
   }
 }

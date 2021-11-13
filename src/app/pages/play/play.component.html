@@ -1,12 +1,7 @@
- <div class="container-fluid p-0">
-    <ng-container *ngFor="let j of jsonData">
-        <div *ngIf="jsonData" class="position-absolute" [ngStyle]="{
-            'background': j.zone_data.background,
-            'height': j.zone_data.height+'px',
-            'width': j.zone_data.width+'px',
-            'left': j.zone_data.position_x+'px',
-            'top': j.zone_data.position_y+'px'}">
-            <img width="100%" height="100%" [src]="j.zone_playlist_data.contents[0].file_url" alt="">
-        </div>
-    </ng-container>
+<div *ngIf="jsonData">
+    <div class="template-demo">
+        <app-screen
+        [zone_playlist]="jsonData">
+        </app-screen>
+    </div>    
 </div>

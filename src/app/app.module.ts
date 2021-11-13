@@ -13,6 +13,10 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // If You need animations
 // For MDB Angular Free
 import { CarouselModule, WavesModule } from 'angular-bootstrap-md';
+import { ImagePipe } from './core/pipe/image/image.pipe';
+import { PlaylistComponent } from './components/playlist/playlist.component';
+import { ZoneTemplateComponent } from './components/zone-template/zone-template.component';
+import { ScreenComponent } from './components/screen/screen.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,8 +24,11 @@ import { CarouselModule, WavesModule } from 'angular-bootstrap-md';
     PartitionComponent,
     SetupComponent,
     FileDownloadComponent,
-    EnterKeyFormComponent
-    
+    EnterKeyFormComponent,
+    ImagePipe,
+    PlaylistComponent,
+    ZoneTemplateComponent,
+    ScreenComponent
   ],
   imports: [
     BrowserModule,

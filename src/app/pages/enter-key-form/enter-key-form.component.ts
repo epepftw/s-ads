@@ -51,9 +51,9 @@ export class EnterKeyFormComponent implements OnInit {
     //subscribe
     this._assignKey.assign_key(payload.key).subscribe(
       (data: any) => {
-        this.assignee = data;
-        alert('Key Assigned')
-        this._router.navigate(['setup'])
+        console.log(data);
+          localStorage.setItem('player_data', JSON.stringify(data))
+        this._router.navigate(['play'])
       }
     )
   }

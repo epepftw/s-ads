@@ -1,12 +1,12 @@
 export const endpoints = {
     get: {
         get_contents: 'pi/media/getAll',
-        get_key_data: '/keys/getByKey',
-        get_mediaFiles: '/media'
+        get_mediaFiles: '/media',
+        get_screen: '/screen',      
+        register_key: 'keys/registerKey'
     },
 
     post: {
-        save_contents: 'pi/media/save',
-        register: 'keys/register'
+        save_contents: 'pi/media/save'
     }
 }
