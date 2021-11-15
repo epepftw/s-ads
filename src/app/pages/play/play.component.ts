@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { io } from "socket.io-client";
 import { MediaFileService } from 'src/app/core/services/mediaFile/media-file.service';
 ////////////////TO MOVE////////////////////////////////
@@ -10,18 +9,11 @@ import { AssignKeyService } from 'src/app/core/services/assignKey/assign-key.ser
   styleUrls: ['./play.component.scss']
 })
 export class PlayComponent implements OnInit {
-  screen_id : string = '';
   socket: any;
-  mediaFiles: any[] = [];
   jsonData: any;
-  jsonContents: any[] = [];
-  screen_data : any;
 
-  constructor(private _router: Router,
-              private _activatedRoute : ActivatedRoute,
-              private _mediaFiles: MediaFileService,
-              private _assignKey: AssignKeyService) { 
-    this.socket = io('http://localhost:3200')
+  constructor() { 
+    this.socket = io('http://localhost:5000', {transports : ['websocket']});
   }
 
   ngOnInit(): void {
