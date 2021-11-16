@@ -7,7 +7,8 @@ import { endpoints } from "./endpoints";
 export const environment = {
   production: false,
   base_uri: 'http://localhost:5000/api/',
-  cloud_api: 'https://rcdt-api.herokuapp.com/api',
+  cloud_api: 'http://localhost:3000/api',
+  
   
   save_uploaded_file: '/media/saveuploadedmediainfo',
 

@@ -1,5 +1,7 @@
-<div *ngFor="let file of mediaFiles">
-    <div class="player">
-        <img class="mediaFile" [src]="file.url" alt="">
-    </div>
+<div *ngIf="jsonData">
+    <div class="template-demo">
+        <app-screen
+        [zone_playlist]="jsonData">
+        </app-screen>
+    </div>    
 </div>

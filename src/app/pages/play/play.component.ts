@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router }from '@angular/router';
 import { io } from "socket.io-client";
 import { MediaFileService } from 'src/app/core/services/mediaFile/media-file.service';
-
+////////////////TO MOVE////////////////////////////////
+import { AssignKeyService } from 'src/app/core/services/assignKey/assign-key.service';
 @Component({
   selector: 'app-play',
   templateUrl: './play.component.html',
@@ -10,32 +11,50 @@ import { MediaFileService } from 'src/app/core/services/mediaFile/media-file.ser
 })
 export class PlayComponent implements OnInit {
   socket: any;
-  mediaFiles: any[] = [];
+  jsonData: any;
+  key: any;
 
-  constructor(private _router: Router, private _mediaFiles: MediaFileService) { 
-    this.socket = io('http://localhost:3200')
+  constructor(
+    private _router: Router,
+  ) { 
+    this.socket = io('http://localhost:5000', {transports : ['websocket']});
   }
 
   ngOnInit(): void {
-    this.onUpdate();
-    this.getMediaFiles();
+  //  this.onUpdate();
+    this.getData();
+    this.acceptEvent();
+    this.playerPlaying();
   }
 
-  getMediaFiles() {
-    this._mediaFiles.get_mediaFiles().subscribe(
-      (media: any) =>  {
-        this.mediaFiles = media;
-        console.log('#MEDIA FILES', this.mediaFiles)
-      }
-    )
+  getData() {
+    let localdata : any = localStorage.getItem('player_data');
+    let jsonData : any = JSON.parse(localdata)
+    this.jsonData = jsonData.screenData;
+    console.log(jsonData)
+    this.key = jsonData.keyData.key
   }
 
-  onUpdate() {
-    this.socket.on('buttonUpdate', (data: any) => {
+  goToKey() {
+    this.socket.on('goToKey', (data: any) => {
       console.log(data);
-      this.getMediaFiles();
-      this._router.navigate(['setup']);
+      this.getData();
+      this._router.navigate(['key']);
     });
   }
 
+  acceptEvent() {
+    this.socket.on('to-pi-ui', (data : {
+      name : string;
+      age: string;
+    }) => {
+      console.log('DAAAAAATAAA',data)
+      this._router.navigate(['key'])
+    })
+  }  
+
+  playerPlaying() {
+    this.socket.emit('player', this.key)
+  }
 }
+

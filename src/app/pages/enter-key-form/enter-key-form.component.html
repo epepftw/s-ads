@@ -1,0 +1,11 @@
+<div class="key-form">
+    <div>
+        <form [formGroup]="register_key" (ngSubmit)="onFormSubmit()">
+            <h4>Remoteli.io</h4>
+            <h2 class="label">Register your Key</h2>
+            <input type="text" class="key" formControlName="key" placeholder="Enter Key"> 
+            <button type="submit">Submit</button>
+        </form>
+       
+    </div>
+</div>
