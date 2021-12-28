@@ -27,7 +27,8 @@ export class PlaylistComponent implements OnInit {
   checkFileType(sequence : number) : void {
     setTimeout(() => {
       this.current_file_type = this.playlist_data[sequence].mimetype;
-      console.log('Current File Type : ', sequence, this.current_file_type)
+      this.img_duration = this.playlist_data[sequence].duration;
+      console.log('Current File Type : ', sequence, this.current_file_type, this.playlist_data[sequence].duration)
       if(this._image.transform(this.playlist_data[sequence].mimetype)) {
         console.log('image')
         this.displayImage(this.playlist_data[sequence].file_url)
