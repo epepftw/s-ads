@@ -1,5 +1,6 @@
 export const endpoints = {
     get: {
+        download: 'keys/download',
         get_contents: 'pi/media/getAll',
         get_mediaFiles: '/media',
         get_screen: '/screen',      

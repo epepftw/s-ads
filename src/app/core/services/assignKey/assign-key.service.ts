@@ -13,4 +13,9 @@ export class AssignKeyService {
   assign_key(key: string) : Observable<any> {
     return this._http.get(`${environment.base_uri}${environment.get.register_key}?key=${key}`)
   }
+
+  download(data: any): Observable<any> {
+    console.log('topass', data);
+    return this._http.post(`${environment.base_uri}${environment.get.download}`, data);
+  }
 }

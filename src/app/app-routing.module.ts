@@ -10,6 +10,10 @@ const routes: Routes = [
     component: EnterKeyFormComponent
   },
   {
+    path: '',
+    component: PlayComponent
+  }, 
+  {
     path: 'play',
     component: PlayComponent
   }, 

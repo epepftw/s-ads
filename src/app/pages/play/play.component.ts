@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }from '@angular/router';
 import { io } from "socket.io-client";
-import { MediaFileService } from 'src/app/core/services/mediaFile/media-file.service';
-////////////////TO MOVE////////////////////////////////
 import { AssignKeyService } from 'src/app/core/services/assignKey/assign-key.service';
 @Component({
   selector: 'app-play',
@@ -16,6 +14,7 @@ export class PlayComponent implements OnInit {
 
   constructor(
     private _router: Router,
+    private _assignKey: AssignKeyService
   ) { 
     this.socket = io('http://localhost:5000', {transports : ['websocket']});
   }
@@ -25,6 +24,7 @@ export class PlayComponent implements OnInit {
     this.getData();
     this.acceptEvent();
     this.playerPlaying();
+    this.acceptUpdate();
   }
 
   getData() {
@@ -45,13 +45,23 @@ export class PlayComponent implements OnInit {
 
   acceptEvent() {
     this.socket.on('to-pi-ui', (data : {
-      name : string;
-      age: string;
+      advertiser_name : string;
+      key: string;
     }) => {
       console.log('DAAAAAATAAA',data)
       this._router.navigate(['key'])
     })
   }  
+
+  acceptUpdate(){
+    this.socket.on('keyData', (data : {
+      advertiser_name : string;
+      key: string;
+    }) => {
+      console.log('NOICE RESHIV', data.key)
+      this._router.navigate(['setup'], {queryParams : { key : data.key}});
+    })
+  }
 
   playerPlaying() {
     this.socket.emit('player', this.key)

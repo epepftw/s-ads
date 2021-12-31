@@ -48,14 +48,15 @@ export class EnterKeyFormComponent implements OnInit {
       key: this.register_key.get('key')?.value
     }
 
+    this._router.navigate(['setup'], {queryParams : { key : payload.key}});
     //subscribe
-    this._assignKey.assign_key(payload.key).subscribe(
-      (data: any) => {
-        console.log(data);
-          localStorage.setItem('player_data', JSON.stringify(data))
-        this._router.navigate(['play'])
-      }
-    )
+    // this._assignKey.assign_key(payload.key).subscribe(
+    //   (data: any) => {
+    //     console.log(data);
+    //       localStorage.setItem('player_data', JSON.stringify(data))
+    //     this._router.navigate(['setup'])
+    //   }
+    // )
   }
 
 }

@@ -1,1 +1,14 @@
-<h1>{{ title }} - {{ count }}</h1>
+<div class="d-flex align-items-center justify-content-center" style="height: 100vh;">
+    <div>
+        <h1 class="text-white mb-3">{{ download_headline }}</h1>
+        <div class="progress-bar mb-2">
+            <div class="progress-bar-loader" [ngStyle]="{
+                'width.%': download_progress
+            }"></div>
+        </div>
+
+        <p class="text-white">
+            Downloaded {{ downloadedCount }} of {{ keyPlaylistAssets.length }} assets
+        </p>
+    </div>
+</div>
