@@ -29,10 +29,16 @@ export class PlayComponent implements OnInit {
 
   getData() {
     let localdata : any = localStorage.getItem('player_data');
-    let jsonData : any = JSON.parse(localdata)
-    this.jsonData = jsonData.screenData;
-    console.log(jsonData)
-    this.key = jsonData.keyData.key
+    
+    if(localdata){
+      let jsonData : any = JSON.parse(localdata)
+      this.jsonData = jsonData.screenData;
+      console.log(jsonData)
+      this.key = jsonData.keyData.key
+
+    }else{
+      this._router.navigate(['key']);
+    }
   }
 
   goToKey() {
@@ -59,7 +65,7 @@ export class PlayComponent implements OnInit {
       key: string;
     }) => {
       console.log('NOICE RESHIV', data.key)
-      this._router.navigate(['setup'], {queryParams : { key : data.key}});
+      this._router.navigate(['/setup'], {queryParams : { key : data.key}});
     })
   }
 
